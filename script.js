@@ -61,7 +61,7 @@ function openMiniWindow(imageUrl, caption, fileId) {
         <div class="mini-window-content">
             <iframe src="https://drive.google.com/file/d/${fileId}/preview" width="640" height="480" allow="autoplay"></iframe>
             <p>${caption}</p>
-            <a href="${imageUrl}" download="${caption}" target="_blank" rel="noopener noreferrer">Descargar</a>
+            <a href="#" onclick="downloadImage('${imageUrl}', '${caption}'); return false;">Descargar</a>
             <button onclick="closeMiniWindow()">Cerrar</button>
         </div>
     `;
@@ -70,6 +70,23 @@ function openMiniWindow(imageUrl, caption, fileId) {
 
 function closeMiniWindow() {
     miniWindow.style.display = 'none';
+}
+
+function downloadImage(imageUrl, fileName) {
+    fetch(imageUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        })
+        .catch(error => console.error('Error al descargar la imagen:', error));
 }
 
 function playMusic() {
