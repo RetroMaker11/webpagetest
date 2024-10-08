@@ -61,7 +61,7 @@ function openMiniWindow(imageUrl, caption, fileId) {
         <div class="mini-window-content">
             <iframe src="https://drive.google.com/file/d/${fileId}/preview" width="640" height="480" allow="autoplay"></iframe>
             <p>${caption}</p>
-            <a href="${imageUrl}" download="${caption}" target="_blank" rel="noopener noreferrer" onclick="return downloadImage('${imageUrl}', '${caption}');">Descargar</a>
+            <a href="${imageUrl}" target="_blank" rel="noopener noreferrer">Abrir y Descargar</a>
             <button onclick="closeMiniWindow()">Cerrar</button>
         </div>
     `;
@@ -72,31 +72,8 @@ function closeMiniWindow() {
     miniWindow.style.display = 'none';
 }
 
-function downloadImage(imageUrl, fileName) {
-    // Intenta el método de descarga nativo primero
-    const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = fileName;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    
-    // Intenta el método de clic programático
-    if (typeof link.click === 'function') {
-        link.click();
-    } else {
-        // Si el clic programático no funciona, simula un clic del usuario
-        link.dispatchEvent(new MouseEvent('click'));
-    }
-
-    // Si estamos en un entorno Android WebView, intenta usar la API de Android
-    if (typeof Android !== 'undefined' && Android !== null && typeof Android.downloadFile === 'function') {
-        Android.downloadFile(imageUrl, fileName);
-    }
-
-    return false; // Previene la navegación por defecto
-}
-
 function playMusic() {
+    backgroundMusic.volume = 0.3; // Ajusta el volumen al 30%
     backgroundMusic.play().then(() => {
         console.log('La música comenzó a reproducirse');
         playMusicBtn.style.display = 'none';
