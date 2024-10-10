@@ -205,19 +205,29 @@ h1 {
 #back-button {
     display: none;
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: rgba(66, 133, 244, 0.7);
+    bottom: 30px;
+    left: 30px;
+    background-color: rgba(66, 133, 244, 0.9);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 30px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 #back-button:hover {
-    background-color: rgba(51, 103, 214, 0.9);
+    background-color: rgba(51, 103, 214, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#back-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
