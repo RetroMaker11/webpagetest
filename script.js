@@ -14,6 +14,9 @@ const backButton = document.getElementById('back-button');
 let allImages = [];
 let isSearchActive = false;
 
+// Añadir al principio del archivo script.js, junto con las otras constantes
+const muteButton = document.getElementById('mute-button');
+
 function loadGoogleDriveAPI() {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/api.js';
@@ -88,8 +91,8 @@ function closeMiniWindow() {
     miniWindow.style.display = 'none';
 }
 
+// Modificar la función playMusic() para que no cambie el volumen
 function playMusic() {
-    backgroundMusic.volume = 0.3;
     backgroundMusic.play().then(() => {
         console.log('La música comenzó a reproducirse');
         playMusicBtn.style.display = 'none';
@@ -97,6 +100,17 @@ function playMusic() {
         console.error('No se pudo reproducir la música automáticamente:', error);
         playMusicBtn.style.display = 'block';
     });
+}
+
+// Añadir esta función después de la función playMusic()
+function toggleMute() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+    } else {
+        backgroundMusic.pause();
+        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    }
 }
 
 function performSearch() {
@@ -122,6 +136,7 @@ document.body.addEventListener('click', playMusic, { once: true });
 document.body.addEventListener('touchstart', playMusic, { once: true });
 document.body.addEventListener('keydown', playMusic, { once: true });
 
+// Modificar la función window.addEventListener('load', ...) para incluir la inicialización del estado del botón de silenciar
 window.addEventListener('load', () => {
     playMusic();
     playMusicBtn.addEventListener('click', playMusic);
@@ -139,6 +154,15 @@ window.addEventListener('load', () => {
     searchInput.addEventListener('input', performSearch);
 
     backButton.addEventListener('click', resetSearch);
+
+    muteButton.addEventListener('click', toggleMute);
+
+    // Inicializar el estado del botón de silenciar
+    if (backgroundMusic.paused) {
+        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
 });
 
 window.addEventListener('focus', playMusic);
