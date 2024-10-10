@@ -59,6 +59,8 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
+    min-height: 50vh;
+    position: relative;
 }
 
 .image-item {
@@ -152,4 +154,70 @@ h1 {
     #image-gallery {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.search-input {
+    display: none;
+    margin-left: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    width: 200px;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input.active {
+    display: block;
+}
+
+#no-results {
+    text-align: center;
+    color: white;
+    font-size: 1.2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+#back-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(66, 133, 244, 0.7);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#back-button:hover {
+    background-color: rgba(51, 103, 214, 0.9);
 }
