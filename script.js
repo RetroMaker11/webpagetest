@@ -139,25 +139,24 @@ window.addEventListener('load', () => {
     searchInput.addEventListener('input', performSearch);
 
     backButton.addEventListener('click', resetSearch);
-
-    window.addEventListener('popstate', (event) => {
-        if (event.state && event.state.searchTerm) {
-            searchInput.value = event.state.searchTerm;
-            performSearch();
-        } else {
-            resetSearch();
-        }
-    });
 });
 
 window.addEventListener('focus', playMusic);
 
 setInterval(playMusic, 5000);
 
-// Manejar el botón "atrás" del navegador
+// Handle browser's back button
 window.addEventListener('popstate', function(event) {
-    if (!isSearchActive) {
-        return; // Si no hay búsqueda activa, no hacemos nada
+    // Prevent default behavior
+    event.preventDefault();
+    
+    // Do nothing if it's a mobile device
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        return;
     }
-    resetSearch(); // Resetear la búsqueda y volver a la pantalla principal
+    
+    // For non-mobile devices, keep the existing functionality
+    if (isSearchActive) {
+        resetSearch();
+    }
 });
