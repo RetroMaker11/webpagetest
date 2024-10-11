@@ -160,15 +160,6 @@ window.addEventListener('focus', playMusic);
 
 // Handle browser's back button
 window.addEventListener('popstate', function(event) {
-    // Prevent default behavior
-    event.preventDefault();
-    
-    // Do nothing if it's a mobile device
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-        return;
-    }
-    
-    // For non-mobile devices, keep the existing functionality
     if (isSearchActive) {
         resetSearch();
     }
