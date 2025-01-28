@@ -24,9 +24,9 @@ let currentMusicIndex = 0
 
 const musicTracks = [
   "https://www.cjoint.com/doc/24_10/NJkhjyxKF6X_nintendo-wii-u-mii-maker-music-but-it-s-lofi-MP3-160K-.mp3",
-  "https://www.cjoint.com/doc/24_11/NKfcJMKZA2Z_audio2.mp3",
-  "https://www.cjoint.com/doc/24_11/NKfcKVFD3AZ_audio3.mp3",
-  "https://www.cjoint.com/doc/24_11/NKfcLwTTdtZ_audio4.mp3",
+  "https://www.cjoint.com/doc/25_01/OACqRFxFFFd_audio2.mp3",
+  "https://www.cjoint.com/doc/25_01/OACqSxzOV0d_audio3.mp3",
+  "https://www.cjoint.com/doc/25_01/OACqTkaXFSd_audio4.mp3",
 ]
 
 function loadGoogleDriveAPI() {
@@ -64,7 +64,7 @@ function loadMedia() {
 function displayMedia(media) {
   imageGallery.innerHTML = ""
   if (media.length === 0) {
-    imageGallery.innerHTML = '<p id="no-results">No se han encontrado resultados</p>'
+    imageGallery.innerHTML = '<p id="no-results">No se han<br>encontrado resultados</p>'
     return
   }
   media.forEach((file, index) => {
@@ -137,19 +137,36 @@ function openMiniWindow(fileId, caption, mimeType) {
     mediaContent = `<iframe src="https://drive.google.com/file/d/${fileId}/preview" width="640" height="480" allow="autoplay" allowfullscreen></iframe>`
   }
 
-  miniWindow.innerHTML = `
-        <div class="mini-window-content">
-            ${mediaContent}
-            <p>${caption}</p>
-            <a href="https://drive.google.com/uc?export=download&id=${fileId}" target="_blank" rel="noopener noreferrer">Descargar</a>
-            <button onclick="closeMiniWindow()">Cerrar</button>
-        </div>
-    `
-  miniWindow.style.display = "block"
+  const miniWindowContent = `
+    <div class="mini-window-content">
+      ${mediaContent}
+      <p>${caption}</p>
+      <a href="https://drive.google.com/uc?export=download&id=${fileId}" target="_blank" rel="noopener noreferrer">Descargar</a>
+      <button onclick="closeMiniWindow()">Cerrar</button>
+    </div>
+  `
+
+  if (favoritesSection.style.display === "block") {
+    const favoriteMiniWindow = favoritesSection.querySelector(".mini-window") || document.createElement("div")
+    favoriteMiniWindow.className = "mini-window"
+    favoriteMiniWindow.innerHTML = miniWindowContent
+    favoritesSection.appendChild(favoriteMiniWindow)
+    favoriteMiniWindow.style.display = "block"
+  } else {
+    miniWindow.innerHTML = miniWindowContent
+    miniWindow.style.display = "block"
+  }
 }
 
 function closeMiniWindow() {
-  miniWindow.style.display = "none"
+  if (favoritesSection.style.display === "block") {
+    const favoriteMiniWindow = favoritesSection.querySelector(".mini-window")
+    if (favoriteMiniWindow) {
+      favoriteMiniWindow.style.display = "none"
+    }
+  } else {
+    miniWindow.style.display = "none"
+  }
 }
 
 function playMusic() {
@@ -240,15 +257,28 @@ function showFavorites() {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || []
   const favoriteItems = allMedia.filter((file) => favorites.includes(file.id))
 
+  // Eliminar el botón "Atrás" existente si lo hay
+  const existingBackButton = document.getElementById("favorites-back-button")
+  if (existingBackButton) {
+    existingBackButton.remove()
+  }
+
+  // Insertar el nuevo botón "Atrás"
+  favoritesSection.insertAdjacentHTML(
+    "beforeend",
+    '<button id="favorites-back-button" class="back-button"><i class="fas fa-arrow-left"></i></button>',
+  )
+  document.getElementById("favorites-back-button").addEventListener("click", hideFavorites)
+
   if (favoriteItems.length === 0) {
-    favoritesGrid.innerHTML = '<p class="no-favorites">No tienes favoritos guardados.</p>'
+    favoritesGrid.innerHTML = '<p class="no-favorites">No tienes<br>favoritos guardados</p>'
   } else {
     favoriteItems.forEach((file, index) => {
       const mediaItem = createMediaItem(file, index)
       favoritesGrid.appendChild(mediaItem)
     })
   }
-  backButton.style.display = "block"
+
   favoritesSection.style.display = "block"
   document.body.classList.add("body-no-scroll")
   lazyLoadMedia()
@@ -256,28 +286,17 @@ function showFavorites() {
 
 function hideFavorites() {
   favoritesSection.style.display = "none"
-  backButton.style.display = "none"
-  document.body.classList.remove("body-no-scroll")
-}
-
-function cacheMedia() {
-  // Caché del video de fondo
-  const videoBackground = document.querySelector(".video-background video")
-  if (videoBackground) {
-    const videoSrc = videoBackground.querySelector("source").src
-    caches.open("media-cache").then((cache) => {
-      cache.add(videoSrc)
-    })
+  const backButton = document.getElementById("favorites-back-button")
+  if (backButton) {
+    backButton.remove()
   }
-
-  // Caché de las imágenes
-  const images = document.querySelectorAll("img[data-src]")
-  images.forEach((img) => {
-    const imgSrc = img.dataset.src
-    caches.open("media-cache").then((cache) => {
-      cache.add(imgSrc)
-    })
-  })
+  document.body.classList.remove("body-no-scroll")
+  searchInput.classList.remove("active")
+  // Cerrar la mini ventana si está abierta en la sección de favoritos
+  const favoriteMiniWindow = favoritesSection.querySelector(".mini-window")
+  if (favoriteMiniWindow) {
+    favoriteMiniWindow.style.display = "none"
+  }
 }
 
 window.addEventListener("load", () => {
@@ -294,6 +313,7 @@ window.addEventListener("load", () => {
   })
 
   searchInput.addEventListener("input", performSearch)
+  backButton.innerHTML = '<i class="fas fa-arrow-left"></i>'
   backButton.addEventListener("click", () => {
     if (favoritesSection.style.display === "block") {
       hideFavorites()
@@ -305,9 +325,6 @@ window.addEventListener("load", () => {
   changeMusicButton.addEventListener("click", changeMusic)
   favoritesButton.addEventListener("click", showFavorites)
   playMusicBtn.addEventListener("click", playMusic)
-
-  // Llamar a la función de caché después de cargar el contenido
-  cacheMedia()
 })
 
 window.addEventListener("focus", () => {
@@ -321,4 +338,4 @@ window.addEventListener("popstate", (event) => {
     resetSearch()
   }
 })
-                                                      
+      
