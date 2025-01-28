@@ -1,5 +1,5 @@
 body {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Audiowide", sans-serif;
   margin: 0;
   padding: 0;
   color: white;
@@ -7,26 +7,416 @@ body {
   overflow-x: hidden;
 }
 
-.video-background {
+.ocean-gradient-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
+  background: linear-gradient(45deg, #42ff68, #5266ff);
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
 }
 
-.video-background video {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+.floating-shape {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: float 20s infinite;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
+}
+
+.floating-shape:nth-child(1) {
+  left: 22.052025139063147%;
+  top: 6.030141240576592%;
+  animation-delay: -2.830832182949563s;
+  animation-duration: 18.348332042302122s;
+}
+
+.floating-shape:nth-child(2) {
+  left: 78.7171806676762%;
+  top: 27.732766576227227%;
+  animation-delay: -10.78774617721115s;
+  animation-duration: 16.77877717526431s;
+}
+
+.floating-shape:nth-child(3) {
+  left: 71.2828193323238%;
+  top: 73.57142857142857%;
+  animation-delay: -17.377217766288297s;
+  animation-duration: 19.63774617721115s;
+}
+
+.floating-shape:nth-child(4) {
+  left: 16.91726702643112%;
+  top: 86.30939890082558%;
+  animation-delay: -13.539387308860557s;
+  animation-duration: 17.575492346214197s;
+}
+
+.floating-shape:nth-child(5) {
+  left: 95.86335132155601%;
+  top: 57.142857142857146%;
+  animation-delay: -15.22885890792722s;
+  animation-duration: 13.816339104207277s;
+}
+
+.floating-shape:nth-child(6) {
+  left: 57.434361335132155%;
+  top: 17.441860465116276%;
+  animation-delay: -11.575492346214197s;
+  animation-duration: 12.253822788842839s;
+}
+
+.floating-shape:nth-child(7) {
+  left: 28.7171806676762%;
+  top: 42.857142857142854%;
+  animation-delay: -16.010366308860557s;
+  animation-duration: 14.507645577685678s;
+}
+
+.floating-shape:nth-child(8) {
+  left: 83.08273297356888%;
+  top: 50.0%;
+  animation-delay: -18.700000000000003s;
+  animation-duration: 11.157142857142858s;
+}
+
+.floating-shape:nth-child(9) {
+  left: 46.54136648678444%;
+  top: 80.15070620288296%;
+  animation-delay: -12.326782084145492s;
+  animation-duration: 19.015070620288297s;
+}
+
+.floating-shape:nth-child(10) {
+  left: 11.654659471377211%;
+  top: 35.714285714285715%;
+  animation-delay: -14.015070620288297s;
+  animation-duration: 15.22885890792722s;
+}
+
+.floating-shape:nth-child(11) {
+  left: 64.10420727461772%;
+  top: 6.030141240576592%;
+  animation-delay: -19.350000000000003s;
+  animation-duration: 18.030141240576592s;
+}
+
+.floating-shape:nth-child(12) {
+  left: 35.89579272538228%;
+  top: 21.428571428571427%;
+  animation-delay: -7.535310144145492s;
+  animation-duration: 20.0%;
+}
+
+.floating-shape:nth-child(13) {
+  left: 91.72670264311203%;
+  top: 32.55813953488372%;
+  animation-delay: -5.78774617721115s;
+  animation-duration: 17.16917267026431s;
+}
+
+.floating-shape:nth-child(14) {
+  left: 4.13664867844399%;
+  top: 50.0%;
+  animation-delay: -3.5845863351321555s;
+  animation-duration: 12.90150706202883s;
+}
+
+.floating-shape:nth-child(15) {
+  left: 76.70264311202644%;
+  top: 89.06010991744186%;
+  animation-delay: -9.507645577685678s;
+  animation-duration: 14.197971115714284s;
+}
+
+.floating-shape:nth-child(16) {
+  left: 50.0%;
+  top: 13.690601099174415%;
+  animation-delay: -8.273297356887978s;
+  animation-duration: 16.339104207274617s;
+}
+
+.floating-shape:nth-child(17) {
+  left: 25.656386648678444%;
+  top: 76.5920727461772%;
+  animation-delay: -1.4154160914747817s;
+  animation-duration: 13.215560109917442s;
+}
+
+.floating-shape:nth-child(18) {
+  left: 88.34534052862241%;
+  top: 10.939890082558139%;
+  animation-delay: -4.350000000000001s;
+  animation-duration: 19.350000000000003s;
+}
+
+.floating-shape:nth-child(19) {
+  left: 61.65465947137721%;
+  top: 64.28571428571429%;
+  animation-delay: -1.078774617721115s;
+  animation-duration: 15.56010991744186s;
+}
+
+.floating-shape:nth-child(20) {
+  left: 14.358957927253822%;
+  top: 24.41860465116279%;
+  animation-delay: -17.893873088605576s;
+  animation-duration: 11.841454923462142s;
+}
+
+.floating-shape:nth-child(21) {
+  left: 97.35688797356888%;
+  top: 83.72093023255814%;
+  animation-delay: -14.74781705043873s;
+  animation-duration: 18.7s;
+}
+
+.floating-shape:nth-child(22) {
+  left: 38.34534052862241%;
+  top: 47.142857142857146%;
+  animation-delay: -12.691726702643112s;
+  animation-duration: 10.420727461772111s;
+}
+
+.floating-shape:nth-child(23) {
+  left: 67.84439890082558%;
+  top: 91.74418604651162%;
+  animation-delay: -16.778774617721115s;
+  animation-duration: 12.565638664867844s;
+}
+
+.floating-shape:nth-child(24) {
+  left: 8.273297356887978%;
+  top: 67.44186046511628%;
+  animation-delay: -15.56010991744186s;
+  animation-duration: 10.78774617721115s;
+}
+
+.floating-shape:nth-child(25) {
+  left: 54.13664867844399%;
+  top: 70.62028829603637%;
+  animation-delay: -13.816339104207277s;
+  animation-duration: 17.893873088605576s;
+}
+
+.floating-shape:nth-child(26) {
+  left: 20.683243392219945%;
+  top: 10.939890082558139%;
+  animation-delay: -19.63774617721115s;
+  animation-duration: 11.442857142857142s;
+}
+
+.floating-shape:nth-child(27) {
+  left: 85.89579272538228%;
+  top: 61.70264311202643%;
+  animation-delay: -11.157142857142858s;
+  animation-duration: 14.818873088605577s;
+}
+
+.floating-shape:nth-child(28) {
+  left: 41.3664867844399%;
+  top: 94.28571428571429%;
+  animation-delay: -7.207274617721115s;
+  animation-duration: 16.010366308860557s;
+}
+
+.floating-shape:nth-child(29) {
+  left: 1.0991744186046512%;
+  top: 38.29735688797357%;
+  animation-delay: -18.348332042302122s;
+  animation-duration: 10.109917441860465s;
+}
+
+.floating-shape:nth-child(30) {
+  left: 73.29735688797357%;
+  top: 21.428571428571427%;
+  animation-delay: -5.054958720930232s;
+  animation-duration: 13.539387308860557s;
+}
+
+.floating-shape:nth-child(31) {
+  left: 50.0%;
+  top: 50.0%;
+  animation-delay: -17.614429453963613s;
+  animation-duration: 12.028829603637308s;
+}
+
+.floating-shape:nth-child(32) {
+  left: 23.383453405286225%;
+  top: 38.29735688797357%;
+  animation-delay: -10.0%;
+  animation-duration: 18.030141240576592s;
+}
+
+.floating-shape:nth-child(33) {
+  left: 80.15070620288296%;
+  top: 73.57142857142857%;
+  animation-delay: -14.294539636269114s;
+  animation-duration: 11.841454923462142s;
+}
+
+.floating-shape:nth-child(34) {
+  left: 10.939890082558139%;
+  top: 17.441860465116276%;
+  animation-delay: -16.339104207274617s;
+  animation-duration: 15.0%;
+}
+
+.floating-shape:nth-child(35) {
+  left: 69.1726702643112%;
+  top: 42.857142857142854%;
+  animation-delay: -15.0%;
+  animation-duration: 17.16917267026431s;
+}
+
+.floating-shape:nth-child(36) {
+  left: 32.155601099174416%;
+  top: 86.30939890082558%;
+  animation-delay: -18.030141240576592s;
+  animation-duration: 14.818873088605577s;
+}
+
+.floating-shape:nth-child(37) {
+  left: 93.02325581395349%;
+  top: 50.0%;
+  animation-delay: -11.841454923462142s;
+  animation-duration: 12.565638664867844s;
+}
+
+.floating-shape:nth-child(38) {
+  left: 5.465947137759471%;
+  top: 27.732766576227227%;
+  animation-delay: -17.16917267026431s;
+  animation-duration: 19.015070620288297s;
+}
+
+.floating-shape:nth-child(39) {
+  left: 78.7171806676762%;
+  top: 80.15070620288296%;
+  animation-delay: -13.215560109917442s;
+  animation-duration: 11.442857142857142s;
+}
+
+.floating-shape:nth-child(40) {
+  left: 30.8273297356888%;
+  top: 10.939890082558139%;
+  animation-delay: -6.511627906976744s;
+  animation-duration: 15.778774617721115s;
+}
+
+.floating-shape:nth-child(41) {
+  left: 90.69767441860465%;
+  top: 76.5920727461772%;
+  animation-delay: -12.90150706202883s;
+  animation-duration: 16.546594713775947s;
+}
+
+.floating-shape:nth-child(42) {
+  left: 4.13664867844399%;
+  top: 21.428571428571427%;
+  animation-delay: -19.015070620288297s;
+  animation-duration: 13.816339104207277s;
+}
+
+.floating-shape:nth-child(43) {
+  left: 71.2828193323238%;
+  top: 10.939890082558139%;
+  animation-delay: -8.807214726702644s;
+  animation-duration: 15.22885890792722s;
+}
+
+.floating-shape:nth-child(44) {
+  left: 18.066767622405286%;
+  top: 57.142857142857146%;
+  animation-delay: -14.507645577685678s;
+  animation-duration: 11.157142857142858s;
+}
+
+.floating-shape:nth-child(45) {
+  left: 85.89579272538228%;
+  top: 35.714285714285715%;
+  animation-delay: -2.5274617721115716s;
+  animation-duration: 17.575492346214197s;
+}
+
+.floating-shape:nth-child(46) {
+  left: 57.434361335132155%;
+  top: 89.06010991744186%;
+  animation-delay: -9.0%;
+  animation-duration: 12.90150706202883s;
+}
+
+.floating-shape:nth-child(47) {
+  left: 28.7171806676762%;
+  top: 17.441860465116276%;
+  animation-delay: -16.546594713775947s;
+  animation-duration: 10.109917441860465s;
+}
+
+.floating-shape:nth-child(48) {
+  left: 83.08273297356888%;
+  top: 6.030141240576592%;
+  animation-delay: -4.6%;
+  animation-duration: 19.63774617721115s;
+}
+
+.floating-shape:nth-child(49) {
+  left: 16.91726702643112%;
+  top: 47.142857142857146%;
+  animation-delay: -15.778774617721115s;
+  animation-duration: 14.197971115714284s;
+}
+
+.floating-shape:nth-child(50) {
+  left: 23.383453405286225%;
+  top: 13.690601099174415%;
+  animation-delay: -6.802073267820843s;
+  animation-duration: 15.984136374551518s;
 }
 
 .content {
@@ -35,23 +425,18 @@ body {
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  background: linear-gradient(to right, #000080, #48d1cc);
+  padding: 5px; /* Reducido de 10px a 5px */
   text-align: center;
 }
 
 h1 {
   margin: 0;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  color: #ffffff;
+  font-size: 1.5em; /* Reducido de 2em a 1.5em */
+  color: white;
   letter-spacing: 2px;
-  background: linear-gradient(45deg, #ffffff, #ffe4e1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
   font-weight: bold;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
 }
 
 #image-gallery,
@@ -62,6 +447,7 @@ h1 {
   padding: 20px;
   min-height: 50vh;
   position: relative;
+  margin-bottom: 80px;
 }
 
 .image-item {
@@ -166,7 +552,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 5px; /* Reducido de 10px a 5px */
+  padding: 2px 0; /* Reducido de 5px a 2px */
 }
 
 .search-icon,
@@ -191,15 +578,20 @@ h1 {
 }
 
 .search-input {
-  display: none;
-  margin: 0 5px;
-  padding: 5px;
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 300px;
+  padding: 8px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
   font-family: "Orbitron", sans-serif;
-  width: 200px;
+  display: none;
+  z-index: 1001;
 }
 
 .search-input::placeholder {
@@ -218,34 +610,41 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 80%;
+  max-width: 300px;
+  line-height: 1.5;
 }
 
-#back-button {
+#back-button,
+.back-button {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
-  background-color: rgba(66, 133, 244, 0.9);
+  bottom: 80px;
+  left: 20px;
+  background-color: rgba(66, 133, 244, 0.7);
   color: white;
   border: none;
-  padding: 15px 30px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 50%;
   cursor: pointer;
-  font-family: "Orbitron", sans-serif;
-  font-weight: bold;
   font-size: 1.2em;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 2001; /* Aumentado para asegurar que esté por encima de la sección de favoritos */
+  z-index: 2001;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#back-button:hover {
-  background-color: rgba(51, 103, 214, 1);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+#back-button:hover,
+.back-button:hover {
+  background-color: rgba(51, 103, 214, 0.9);
+  transform: scale(1.1);
 }
 
-#back-button:active {
+#back-button:active,
+.back-button:active {
   transform: translateY(1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -279,10 +678,26 @@ h1 {
   box-sizing: border-box;
 }
 
+.favorites-section .mini-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2002;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  display: none;
+}
+
 .favorites-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .favorites-section h2 {
@@ -305,5 +720,34 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 80%;
+  max-width: 300px;
+  line-height: 1.5;
 }
+
+.bottom-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #000080, #48d1cc);
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.banner-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.banner-icon:hover {
+  transform: scale(1.2);
+  }
+  
